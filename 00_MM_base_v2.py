@@ -1,3 +1,6 @@
+import pandas
+
+
 # functions go here
 
 # checks user has entered yes / no to a question
@@ -76,17 +79,34 @@ def string_checker(question, num_letters, valid_responses, ):
         print(error)
 
 
+# currency formatting function
+def currency(x):
+    return "${:.2f}".format(x)
+
+
 # set maximum number of tickets below
-MAX_TICKETS = 3
+MAX_TICKETS = 5
 tickets_sold = 0
 
 yes_no_list = ["yes", "no"]
 payment_list = ["cash", "credit"]
 
+# dictionaries to hold ticket details
+all_names = []
+all_ticket_costs = []
+all_surcharge = []
+
+# Dictionary used to crate data frame ie: column_name:list
+mini_movie_dict = {
+    "Name": all_names,
+    "Ticket Price": all_ticket_costs,
+    "Surcharge": all_surcharge
+}
+
 # Ask user if they want to see the instructions
 want_instructions = string_checker("Do you want to read the "
                                    "instructions (y/n): ",
-                                        1, yes_no_list)
+                                   1, yes_no_list)
 
 if want_instructions == "yes":
     print("Instructions go here")
@@ -120,7 +140,19 @@ while tickets_sold < MAX_TICKETS:
                                 "credit): ",
                                 2, payment_list)
 
+    if pay_method == "cash":
+        surcharge = 0
+    else:
+        # calculate 5% surcharge if users are paying by credit card
+        surcharge = ticket_cost * 0.05
+
     tickets_sold += 1
+
+    # add ticket name, cost and surcharge to lists
+    all_names.append(name)
+    all_ticket_costs.append(ticket_cost)
+    all_surcharge.append(surcharge)
+
 
 # output number of tickets sold
 if tickets_sold == MAX_TICKETS:
