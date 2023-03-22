@@ -26,6 +26,7 @@ a text file.
 
 ***************************''')
 
+
 # checks that user response is not blank
 def not_blank(question):
     while True:
@@ -35,6 +36,7 @@ def not_blank(question):
             print("Sorry this can't be blank. Please try again")
         else:
             return response
+
 
 # checks user enters an integer to a given question
 def num_check(question):
@@ -46,6 +48,7 @@ def num_check(question):
 
         except ValueError:
             print("Please enter an integer")
+
 
 # main routine starts here
 
@@ -65,6 +68,7 @@ def calc_ticket_price(var_age):
 
     return price
 
+
 # checks user has entered yes / no to a question
 def yes_no(question):
     valid = False
@@ -79,50 +83,6 @@ def yes_no(question):
 
         else:
             print("Please answer yes / no")
-
-
-# checks that user response is not blank
-def not_blank(question):
-    while True:
-        response = input(question)
-
-        if response == "":
-            print("Sorry this cant be blank. Please try again")
-        else:
-            return response
-
-
-# checks user enter an integer to a given question
-
-def num_check(question):
-    while True:
-
-        try:
-            response = int(input(question))
-            return response
-
-        except ValueError:
-            print("Please enter an integer")
-
-
-# main routine starts here
-
-
-# calculate the ticket price based on the age
-def calc_ticket_price(var_age):
-    # ticket is $7.50 for users under 16
-    if var_age < 16:
-        price = 7.5
-
-    # ticket is $10.50 for users between 16 and 64
-    elif var_age < 65:
-        price = 10.5
-
-    # ticket price is $6.50 for seniors (65+)
-    else:
-        price = 6.5
-
-    return price
 
 
 # checks that users enter a valid response (eg. yes / no)
@@ -265,19 +225,6 @@ print("----- Ticket Cost / Profit -----")
 print("Total Ticket Sales: ${:.2f}".format(total))
 print("Total Profit : ${:.2f}".format(profit))
 
-print()
-print('---- Raffle Winner ----')
-print("Congratulations {}. You have won ${} ie: your "
-      "ticket is free!").format(winner_name, total_won)
-
-print()
-# output number of tickets sold
-if tickets_sold == MAX_TICKETS:
-    print("Congratulations you have sold all the tickets")
-else:
-    print("You have sold {} ticket/s.  There is {} ticket/s "
-          "remaining".format(tickets_sold, MAX_TICKETS - tickets_sold))
-
 # **** Get current date for heading and filename ****
 # get today's date
 today = date.today()
@@ -305,7 +252,7 @@ winner_heading = "\n----- Raffle Winner -----"
 winner_text = f"The winner of the raffle is {winner_name}" \
               f"They have won ${total_won}. ie: Their ticket is free!" \
  \
-# list holding content to print / write to file
+    # list holding content to print / write to file
 to_write = [heading, mini_movie_string, ticket_cost_heading,
             total_ticket_sales, total_profit, sales_status,
             winner_heading, winner_text]
